@@ -12,7 +12,7 @@ commands:
           command: npm install
       - run:
           name: Test
-          command: npm run test:ci
+          command: npm run test:ci:legacy
   test-nodejs:
     steps:
       - run:
@@ -20,7 +20,7 @@ commands:
           command: npm version
       - checkout
           name: Install dependencies
-          command: npm ci
+          command: npm install
       - run:
           name: Test
           command: npm run test:ci
@@ -55,6 +55,8 @@ workflows:
   version: 2
   node-multi-build:
     jobs:
+      - node-v6
+      - node-v8
       - node-v10
       - node-v12
       - node-v14
