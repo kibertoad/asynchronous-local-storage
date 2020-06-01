@@ -1,7 +1,6 @@
 const { isAlsSupported } = require('../lib/nodeVersionUtils')
 
 describe('AsyncLocalStorage tests', () => {
-
   if (isAlsSupported()) {
     const { als } = require('../lib/als')
 

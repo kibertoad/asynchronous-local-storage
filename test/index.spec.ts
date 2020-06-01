@@ -1,4 +1,5 @@
 import type { AsynchronousLocalStorage } from '../lib/als-types'
+import { isAlsSupported } from '../lib/nodeVersionUtils'
 
 describe('Dynamic export resolution tests', () => {
   beforeEach(() => {
@@ -19,12 +20,15 @@ describe('Dynamic export resolution tests', () => {
     })
   })
 
-  describe('when AsyncLocalStorage is available', () => {
-    it('then it is used', async () => {
-      const mockNodeUtils: any = await import('../lib/nodeVersionUtils')
-      mockNodeUtils.isAlsSupported.mockReturnValue(true)
-      const als: AsynchronousLocalStorage = (await import('../index')).als
-      expect(als.storageImplementation).toBe('AsyncLocalStorage')
+  // Do not run this on older Nodes to avoid als.ts exploding on import
+  if (isAlsSupported()) {
+    describe('when AsyncLocalStorage is available', () => {
+      it('then it is used', async () => {
+        const mockNodeUtils: any = await import('../lib/nodeVersionUtils')
+        mockNodeUtils.isAlsSupported.mockReturnValue(true)
+        const als: AsynchronousLocalStorage = (await import('../index')).als
+        expect(als.storageImplementation).toBe('AsyncLocalStorage')
+      })
     })
-  })
+  }
 })
