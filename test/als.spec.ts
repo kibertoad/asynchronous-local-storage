@@ -1,8 +1,10 @@
-import als from '../lib/als'
-import { isAlsSupported } from '../lib/nodeVersionUtils'
+const { isAlsSupported } = require('../lib/nodeVersionUtils')
 
 describe('AsyncLocalStorage tests', () => {
+
   if (isAlsSupported()) {
+    const { als } = require('../lib/als')
+
     describe('if set is called without running in context', () => {
       it('then get returns undefined', () => {
         als.set('key', 'value')
