@@ -1,6 +1,6 @@
 {
   "name": "asynchronous-local-storage",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "maintainers": [
     {
@@ -48,14 +48,19 @@
       }
     }
   },
-  "homepage": "http://github.com/kibertoad/canned-enterprise-node",
+  "homepage": "https://github.com/kibertoad/asynchronous-local-storage",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kibertoad/canned-enterprise-node.git"
+    "url": "git://github.com/kibertoad/asynchronous-local-storage.git"
   },
   "keywords": [
-    "typescript",
-    "template"
+    "async-local-storage",
+    "als",
+    "cls",
+    "continuous-local-storage",
+    "asynchronouslocalstorage",
+    "threadlocal",
+    "typescript"
   ],
   "files": [
     "README.md",
