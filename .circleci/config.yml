@@ -19,6 +19,7 @@ commands:
           name: Versions
           command: npm version
       - checkout
+      - run:
           name: Install dependencies
           command: npm install
       - run:
