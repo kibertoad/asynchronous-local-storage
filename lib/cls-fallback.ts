@@ -20,9 +20,9 @@ export const cls: AsynchronousLocalStorage = {
   runWith: (callback: () => void, defaults?: Record<string, any>) => {
     _namespace.run(() => {
       if (defaults) {
-        const objectEntries = Object.entries(defaults)
-        for (let i = 0; i < objectEntries.length; i++) {
-          _namespace.set(objectEntries[i][0], objectEntries[i][1])
+        const objectKeys = Object.keys(defaults)
+        for (let i = 0; i < objectKeys.length; i++) {
+          _namespace.set(objectKeys[i], defaults[objectKeys[i]])
         }
       }
       callback()
