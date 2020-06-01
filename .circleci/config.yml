@@ -7,8 +7,9 @@ commands:
           name: Versions
           command: npm version
       - checkout
-        name: Install dependencies
-        command: npm install
+      - run:
+          name: Install dependencies
+          command: npm install
       - run:
           name: Test
           command: npm run test:ci
