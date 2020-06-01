@@ -48,6 +48,9 @@
       }
     }
   },
+  "engines": {
+    "node": ">=6"
+  },
   "homepage": "https://github.com/kibertoad/asynchronous-local-storage",
   "repository": {
     "type": "git",
