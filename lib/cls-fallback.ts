@@ -1,7 +1,36 @@
 import { createNamespace, Namespace } from 'cls-hooked'
 import { AsynchronousLocalStorage } from './als-types'
-
 const usedNamespaceIds = new Set()
+const _namespace = createNamespace('@kibertoad/als')
+usedNamespaceIds.add('@kibertoad/als')
+
+export const cls: AsynchronousLocalStorage = {
+  storageImplementation: 'cls-hooked',
+  get: <T>(key: string): T | undefined => {
+    if (_namespace.active) {
+      return _namespace.get(key)
+    }
+    return undefined
+  },
+
+  set: <T>(key: string, value: T) => {
+    if (_namespace.active) {
+      _namespace.set(key, value)
+    }
+  },
+
+  runWith: (callback: () => void, defaults?: Record<string, any>) => {
+    _namespace.run(() => {
+      if (defaults) {
+        const objectKeys = Object.keys(defaults)
+        for (let i = 0; i < objectKeys.length; i++) {
+          _namespace.set(objectKeys[i], defaults[objectKeys[i]])
+        }
+      }
+      callback()
+    })
+  },
+}
 
 export class Cls implements AsynchronousLocalStorage {
   private _storageInstance: Namespace
@@ -47,4 +76,4 @@ export function getClsInstance(namespaceId: string): AsynchronousLocalStorage {
   return new Cls(namespaceId)
 }
 
-export default new Cls()
+export default cls
