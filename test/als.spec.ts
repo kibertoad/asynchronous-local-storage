@@ -2,7 +2,7 @@ const { isAlsSupported } = require('../lib/nodeVersionUtils')
 
 describe('AsyncLocalStorage tests', () => {
   if (isAlsSupported()) {
-    const { als } = require('../lib/als')
+    const als = require('../lib/als').default
 
     describe('if set is called without running in context', () => {
       it('then get returns undefined', () => {
