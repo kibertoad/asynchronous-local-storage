@@ -1,6 +1,6 @@
 {
   "name": "asynchronous-local-storage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "description": "Asynchronous local storage implementation based on Node.js ALS with fallback to cls-hooked for older Node.js versions",
   "maintainers": [
