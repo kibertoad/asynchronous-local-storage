@@ -1,5 +1,5 @@
 import type { AsynchronousLocalStorage } from '../lib/als-types'
-import { isAlsSupported } from '../lib/nodeVersionUtils'
+import { isAlsSupported, getNodeVersion, nodeVersionString } from '../lib/nodeVersionUtils'
 
 describe('Dynamic export resolution tests', () => {
   beforeEach(() => {
@@ -9,6 +9,20 @@ describe('Dynamic export resolution tests', () => {
     jest.clearAllMocks()
 
     jest.mock('../lib/nodeVersionUtils')
+  })
+
+  describe('Sanity check for version resolution', () => {
+    const nodeVersion = getNodeVersion(nodeVersionString)
+    const isAlsSupportedValue = isAlsSupported(getNodeVersion(nodeVersionString));
+
+    expect(nodeVersionString).toEqual(expect.any(String));
+    expect(nodeVersion.majorVersion).toEqual(expect.any(Number));
+
+    if (nodeVersion.majorVersion >= 12) {
+      expect(isAlsSupportedValue).toBe(true)
+    } else {
+      expect(isAlsSupportedValue).toBe(false)
+    }
   })
 
   describe('when AsyncLocalStorage is not available', () => {
@@ -21,7 +35,7 @@ describe('Dynamic export resolution tests', () => {
   })
 
   // Do not run this on older Nodes to avoid als.ts exploding on import
-  if (isAlsSupported()) {
+  if (isAlsSupported(getNodeVersion(nodeVersionString))) {
     describe('when AsyncLocalStorage is available', () => {
       it('then it is used', async () => {
         const mockNodeUtils: any = await import('../lib/nodeVersionUtils')

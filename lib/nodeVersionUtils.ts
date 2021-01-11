@@ -1,4 +1,4 @@
-const nodeVersion = process.versions.node
+export const nodeVersionString = process.versions.node
 
 type NodeVersion = {
   majorVersion: number
@@ -6,8 +6,8 @@ type NodeVersion = {
   patchVersion: number
 }
 
-function getNodeVersion(): NodeVersion {
-  const [nodeMajor, nodeMinor, nodePatch] = nodeVersion.split('.')
+export function getNodeVersion(nodeVersionString: string): NodeVersion {
+  const [nodeMajor, nodeMinor, nodePatch] = nodeVersionString.split('.')
   return {
     majorVersion: Number.parseInt(nodeMajor),
     minorVersion: Number.parseInt(nodeMinor),
@@ -15,8 +15,8 @@ function getNodeVersion(): NodeVersion {
   }
 }
 
-export function isAlsSupported(): boolean {
-  const { majorVersion, minorVersion } = getNodeVersion()
+export function isAlsSupported(nodeVersion: NodeVersion): boolean {
+  const { majorVersion, minorVersion } = nodeVersion
 
   if (majorVersion > 13) {
     return true
