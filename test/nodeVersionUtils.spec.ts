@@ -35,4 +35,9 @@ describe('nodeVersionUtils', () => {
     const nodeVersion = getNodeVersion('15.0.0')
     expect(isAlsSupported(nodeVersion)).toBe(true)
   })
+
+  it('return false be default', () => {
+    const nodeVersion = getNodeVersion('a.b.c')
+    expect(isAlsSupported(nodeVersion)).toBe(false)
+  })
 })
