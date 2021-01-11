@@ -15,8 +15,6 @@
     "build": "tsc",
     "test": "jest --config=jest.config.json",
     "test:coverage": "jest --config=jest.config.json --coverage",
-    "test:ci": "npm run lint && npm run test:coverage",
-    "test:ci:legacy": "npm run test:coverage",
     "lint": "eslint --format codeframe \"lib/**/*.ts\" \"test/**/*.ts\"",
     "prettier": "prettier --write \"{lib,test}/**/*.{js,ts}\" index.ts",
     "prepublishOnly": "npm run build"
