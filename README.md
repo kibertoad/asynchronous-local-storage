@@ -1,11 +1,12 @@
 # asynchronous-local-storage
 
+  [![NPM Version][npm-image]][npm-url]
+  [![Linux Build][circleci-image]][circleci-url]
+
 Asynchronous local storage implementation based on Node.js ALS with fallback to cls-hooked for older Node.js versions.
 
 Heavily based on a work done in https://github.com/thorough-developer/fast-als
 
-  [![NPM Version][npm-image]][npm-url]
-  [![Linux Build][circleci-image]][circleci-url]
 
 ## Install
 
