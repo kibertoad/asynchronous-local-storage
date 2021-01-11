@@ -13,10 +13,10 @@ describe('Dynamic export resolution tests', () => {
 
   describe('Sanity check for version resolution', () => {
     const nodeVersion = getNodeVersion(nodeVersionString)
-    const isAlsSupportedValue = isAlsSupported(getNodeVersion(nodeVersionString));
+    const isAlsSupportedValue = isAlsSupported(getNodeVersion(nodeVersionString))
 
-    expect(nodeVersionString).toEqual(expect.any(String));
-    expect(nodeVersion.majorVersion).toEqual(expect.any(Number));
+    expect(nodeVersionString).toEqual(expect.any(String))
+    expect(nodeVersion.majorVersion).toEqual(expect.any(Number))
 
     if (nodeVersion.majorVersion >= 12) {
       expect(isAlsSupportedValue).toBe(true)

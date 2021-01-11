@@ -1,4 +1,4 @@
-import { getNodeVersion, isAlsSupported } from "../lib/nodeVersionUtils";
+import { getNodeVersion, isAlsSupported } from '../lib/nodeVersionUtils'
 
 describe('nodeVersionUtils', () => {
   it('Versions below 12 do not support ALS', () => {
