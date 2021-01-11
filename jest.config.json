@@ -21,7 +21,6 @@
       "diagnostics": false
     }
   },
-    "collectCoverage": true,
     "coverageThreshold": {
       "global": {
         "statements": 84,
