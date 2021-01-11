@@ -20,5 +20,13 @@
     "ts-jest": {
       "diagnostics": false
     }
+  },
+    "coverageThreshold": {
+      "global": {
+        "statements": 84,
+        "branches": 73,
+        "functions": 100,
+        "lines": 83
+      }
   }
 }
