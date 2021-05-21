@@ -39,9 +39,9 @@ jobs:
       - image: node:14
     steps:
       - test-nodejs
-  node-v15:
+  node-v16:
     docker:
-      - image: node:15
+      - image: node:16
     steps:
       - test-nodejs
 
@@ -54,4 +54,4 @@ workflows:
       - node-v10
       - node-v12
       - node-v14
-      - node-v15
+      - node-v16
