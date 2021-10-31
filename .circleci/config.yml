@@ -44,6 +44,11 @@ jobs:
       - image: node:16
     steps:
       - test-nodejs
+  node-v17:
+    docker:
+      - image: node:17
+    steps:
+      - test-nodejs
 
 workflows:
   version: 2
@@ -55,3 +60,4 @@ workflows:
       - node-v12
       - node-v14
       - node-v16
+      - node-v17
