@@ -21,6 +21,15 @@ describe('AsyncLocalStorage tests', () => {
           { key: 'value' }
         )
       })
+
+      it('runWith with synchronous callback', () => {
+        const result = als.runWith(() => {
+          als.set('key', 'value')
+          return als.get('key')
+        })
+
+        expect(result).toBe('value')
+      })
     })
 
     describe('if set is called within context', () => {
@@ -30,6 +39,26 @@ describe('AsyncLocalStorage tests', () => {
           expect(als.get('key')).toBe('value')
           done()
         })
+      })
+    })
+
+    describe('test runWith', () => {
+      it('runWith with synchronous callback', () => {
+        const result = als.runWith(() => {
+          als.set('key', 'value')
+          return als.get('key')
+        })
+
+        expect(result).toBe('value')
+      })
+
+      it('runWith with asynchronous callback', async () => {
+        const result = await als.runWith(async () => {
+          als.set('key', 'value')
+          return Promise.resolve(als.get('key'))
+        })
+
+        expect(result).toBe('value')
       })
     })
   } else {

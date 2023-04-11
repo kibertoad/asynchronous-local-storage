@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from 'async_hooks'
-import { AsynchronousLocalStorage, StorageType } from './als-types'
+import { AsynchronousLocalStorage, StorageType, UnwrapPromise } from './als-types'
 const asyncLocalStorage = new AsyncLocalStorage<StorageType>()
 
 export const als: AsynchronousLocalStorage = {
@@ -14,11 +14,22 @@ export const als: AsynchronousLocalStorage = {
     store?.set(key, value)
   },
 
-  runWith: (callback: () => void, defaults?: Record<string, any>): void => {
+  runWith: <T extends (...args: any[]) => any, R extends ReturnType<T>>(
+    callback: T,
+    defaults?: Record<string, any>
+  ): UnwrapPromise<R> => {
     const store: StorageType = defaults ? new Map(Object.entries(defaults)) : new Map()
 
-    asyncLocalStorage.run(store, () => {
-      callback()
+    return asyncLocalStorage.run(store, () => {
+      let result = callback()
+
+      if (result instanceof Promise) {
+        result.then((resolve) => {
+          result = resolve
+        })
+      }
+
+      return result
     })
   },
 }
