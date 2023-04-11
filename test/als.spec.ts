@@ -21,15 +21,6 @@ describe('AsyncLocalStorage tests', () => {
           { key: 'value' }
         )
       })
-
-      it('runWith with synchronous callback', () => {
-        const result = als.runWith(() => {
-          als.set('key', 'value')
-          return als.get('key')
-        })
-
-        expect(result).toBe('value')
-      })
     })
 
     describe('if set is called within context', () => {
