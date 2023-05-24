@@ -32,6 +32,26 @@ describe('AsyncLocalStorage tests', () => {
         })
       })
     })
+
+    describe('test runWith', () => {
+      it('runWith with synchronous callback', () => {
+        const result = als.runWith(() => {
+          als.set('key', 'value')
+          return als.get('key')
+        })
+
+        expect(result).toBe('value')
+      })
+
+      it('runWith with asynchronous callback', async () => {
+        const result = await als.runWith(async () => {
+          als.set('key', 'value')
+          return Promise.resolve(als.get('key'))
+        })
+
+        expect(result).toBe('value')
+      })
+    })
   } else {
     it('dummy test', () => {
       // Keeps jest happy
